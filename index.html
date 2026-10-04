@@ -905,6 +905,78 @@ footer.tbg .footer-ornament g{stroke:#E6CFA4}
 .pan-back-btn{margin-top:10px;background:none;border:0;color:#E6CFA4;font-family:var(--serif);font-style:italic;font-size:15px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px;position:relative;min-height:36px}
 .pan-hint{margin-top:16px}
 
+
+/* ============ ITINERARIO: LINTERNAS FLOTANTES ============ */
+#siti .eyebrow{color:#F7E7CE}
+#siti .eyebrow::before,#siti .eyebrow::after{background:#E6CFA4}
+#siti h2{color:#FFF8EC}
+#siti h2 em{background:linear-gradient(100deg,#D9BF8F 0%,#FFF8EC 30%,#E6CFA4 50%,#FFF8EC 70%,#D9BF8F 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text}
+#siti .itinerary-sub{color:#F7E7CE}
+#siti .mono-wm{color:rgba(247,231,206,.05)}
+.lz{position:relative;max-width:760px;margin:24px auto 0;display:flex;flex-direction:column}
+.lz-path{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;
+  clip-path:inset(0 0 var(--grow,100%) 0);-webkit-clip-path:inset(0 0 var(--grow,100%) 0)}
+.lz-path path{fill:none;stroke:#F7E7CE;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:1 9;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px rgba(255,214,140,.9))}
+.lz-row{position:relative;z-index:1;flex:1;min-height:clamp(230px,40vw,290px);display:grid;grid-template-columns:40% 60%;align-items:center}
+.lz-row--r{grid-template-columns:60% 40%}
+.lz-row--r .lz-lantern{order:2}
+.lz-lantern{position:relative;justify-self:center;width:clamp(92px,24vw,124px);aspect-ratio:64/86}
+.lz-glow{position:absolute;left:50%;top:50%;width:230%;height:190%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(255,214,130,.6) 0%,rgba(255,190,100,.22) 40%,rgba(255,190,100,0) 68%);opacity:.15;transition:opacity 1.2s}
+.lz-float{position:absolute;inset:0;display:block}
+.lz-svg{width:100%;height:100%;overflow:visible;display:block;filter:brightness(.62) saturate(.8) drop-shadow(0 8px 14px rgba(10,4,20,.5));transition:filter 1.2s}
+.lz-inner{opacity:.2;transition:opacity 1.2s}
+.lz-flame{transform-origin:32px 82px;opacity:.4}
+.lz-sun{position:absolute;left:50%;top:22%;width:30%;aspect-ratio:1;transform:translateX(-50%);
+  -webkit-mask:url('./sol-mask.png') center/contain no-repeat;mask:url('./sol-mask.png') center/contain no-repeat;background:#7a3a8c;opacity:.8}
+.lz-time{position:absolute;left:0;right:0;top:48%;text-align:center;font-family:var(--display);font-style:italic;font-weight:700;
+  font-size:clamp(21px,5.6vw,27px);line-height:1;color:#4a1f5a}
+.lz-time small{display:block;font-family:var(--sans);font-style:normal;font-weight:700;font-size:11px;letter-spacing:.3em;padding-left:.3em;margin-top:3px}
+.lz-row.is-lit .lz-glow{opacity:1;animation:lzGlow 2.6s ease-in-out infinite}
+.lz-row.is-lit .lz-svg{filter:brightness(1) saturate(1) drop-shadow(0 0 16px rgba(255,200,110,.75))}
+.lz-row.is-lit .lz-inner{opacity:1}
+.lz-row.is-lit .lz-flame{opacity:1;animation:lbFlicker .2s steps(2) infinite alternate}
+.lz-row.is-lit .lz-float{animation:lzBob 4.2s ease-in-out infinite}
+.lz-row--r.is-lit .lz-float{animation-delay:-2s}
+@keyframes lzGlow{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.1)}}
+@keyframes lzBob{0%,100%{transform:translateY(0) rotate(-2.5deg)}50%{transform:translateY(-10px) rotate(2.5deg)}}
+.lz-card{position:relative;padding:18px 18px 16px;border-radius:16px;border:1.5px solid transparent;
+  background:linear-gradient(rgba(36,14,52,.66),rgba(36,14,52,.66)) padding-box,linear-gradient(135deg,#9c7a45,#FFF8EC 30%,#D9BF8F 50%,#FFF8EC 70%,#9c7a45) border-box;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 16px 36px -18px rgba(0,0,0,.6)}
+.lz-row--l .lz-card{margin-left:4px;text-align:left}
+.lz-row--r .lz-card{margin-right:4px;text-align:right}
+.lz-ico{display:inline-flex;width:36px;height:36px;border-radius:50%;align-items:center;justify-content:center;margin-bottom:8px;
+  background:radial-gradient(circle at 40% 35%,#fff8ec,#E6CFA4);box-shadow:0 0 12px rgba(255,214,140,.5)}
+.lz-ico svg{width:60%;height:60%;color:#5a2f66}
+.lz-title{font-family:var(--display);font-weight:600;font-size:clamp(19px,5vw,24px);line-height:1.2;color:#FFF8EC;margin-bottom:6px}
+.lz-desc{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(15px,4vw,17px);line-height:1.5;color:#f1e4f6}
+
+/* marcos color globo de cantoya */
+.dc-figures--img{gap:14px;max-width:440px}
+.dc-figures--img .dc-divider{display:none}
+.dc-figures--img .dc-fig{padding:0}
+.dc-frame{position:relative;width:100%;max-width:190px;padding:22px 12px 14px;display:flex;justify-content:center;
+  border-radius:48% 48% 18px 18px/30% 30% 18px 18px;border:3px solid transparent;
+  background:radial-gradient(ellipse at 50% 40%,#fffaf0 0%,#fff0cf 45%,#ffdca0 100%) padding-box,
+             linear-gradient(180deg,#fff3d6 0%,#ffd28a 35%,#f8a94e 70%,#e98a35 100%) border-box;
+  box-shadow:0 0 0 1px rgba(185,102,31,.35),0 0 26px 4px rgba(255,200,110,.45),0 18px 30px -16px rgba(120,60,20,.5)}
+.dc-frame::before{content:"";position:absolute;inset:6px;border-radius:inherit;border:1px solid rgba(185,102,31,.35);pointer-events:none}
+.dc-frame::after{content:"";position:absolute;left:50%;top:-11px;width:22px;height:22px;transform:translateX(-50%);
+  -webkit-mask:url('./sol-mask.png') center/contain no-repeat;mask:url('./sol-mask.png') center/contain no-repeat;background:#7a3a8c}
+.dc-frame .dc-img{height:clamp(190px,48vw,240px);filter:drop-shadow(0 6px 10px rgba(80,40,10,.25))}
+
+/* ============ NUBE: halo detrás de los textos fuera de tarjetas ============ */
+.tbg:not(.tbg--dark) > .container :is(.eyebrow,h2,.locs-sub,.itinerary-sub,.dress-note,.date-eyebrow,.date-h,.date-num,.date-lbl,.date-roman,
+  .verse-text,.verse-quote,.gifts-sub,.dc-fig-label,.dc-fig-sub,.swatch-group-title,.avoid-item,.avoid-note):not(.album-card *):not(.rsvp-card *){text-shadow:0 0 3px #fbf5fd,0 0 3px #fbf5fd,0 0 8px #fbf5fd,0 0 8px #fbf5fd,0 0 14px #fbf5fd,0 0 14px #fbf5fd,0 0 24px #fbf5fd,0 0 36px rgba(251,245,253,.95),0 0 52px rgba(251,245,253,.8)}
+.tbg:not(.tbg--dark) > .container :is(h2 em,.date-h em):not(.album-card *):not(.rsvp-card *){filter:drop-shadow(0 0 2px #fbf5fd) drop-shadow(0 0 5px #fbf5fd) drop-shadow(0 0 10px #fbf5fd) drop-shadow(0 0 18px rgba(251,245,253,.9))}
+.tbg--dark > .container :is(.eyebrow,h2,.countdown-sub,.cd-lbl,.itinerary-sub){text-shadow:0 0 3px rgba(28,10,40,.95),0 0 6px rgba(28,10,40,.95),0 0 12px rgba(28,10,40,.95),0 0 20px rgba(28,10,40,.95),0 0 32px rgba(28,10,40,.8),0 0 48px rgba(28,10,40,.6)}
+.tbg--dark > .container :is(h2 em){filter:drop-shadow(0 0 3px rgba(28,10,40,.95)) drop-shadow(0 0 10px rgba(28,10,40,.95)) drop-shadow(0 0 20px rgba(28,10,40,.8))}
+footer.tbg :is(.footer-names,.footer-date,.footer-credit){text-shadow:0 0 3px rgba(28,10,40,.95),0 0 6px rgba(28,10,40,.95),0 0 12px rgba(28,10,40,.95),0 0 20px rgba(28,10,40,.95),0 0 32px rgba(28,10,40,.8),0 0 48px rgba(28,10,40,.6)}
+.tbg > .container :is(h1,h2,h3,.date-h,.rsvp-title) em,footer.tbg em{text-shadow:none !important}
+/* nube suave detrás de los encabezados de sección */
+.tbg > .container > :is(.eyebrow:first-child),.gifts-head,.verse-wrap{position:relative}
+.cloud-blob{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;z-index:-1;border-radius:50%;filter:blur(18px)}
+
 @media(max-width:600px){
   body{font-size:16px}
   .loc-map-wrap{height:220px}
@@ -953,8 +1025,6 @@ footer.tbg .footer-ornament g{stroke:#E6CFA4}
   <div class="pt-lanterns" id="ptLanterns" aria-hidden="true"></div>
   <div class="pt-medal">
     <div class="pt-sun" aria-hidden="true"><img src="./sol-corona.webp" alt="" width="800" height="800" fetchpriority="high"><span class="pt-shine"></span></div>
-    <div class="pt-disc" aria-hidden="true"></div>
-    <div class="pt-mono">M<span style="font-size:.55em;vertical-align:.25em;padding:0 .04em">&amp;</span>M</div>
     <div class="pt-xv">Mis XV Años</div>
   </div>
   <div id="env-hint">Toca para abrir</div>
@@ -1192,53 +1262,39 @@ footer.tbg .footer-ornament g{stroke:#E6CFA4}
   </section>
 
   <!-- ITINERARIO -->
-  <section id="siti" class="tbg" style="padding:min(14vh,120px) 0 min(14vh,130px);--img:url('./bg-soles.jpg');--veil:rgba(251,245,253,.18);--size:620px auto;--rep:repeat">
+  <section id="siti" class="tbg tbg--dark" style="padding:min(16vh,150px) 0 min(16vh,150px);--img:url('./bg-lago-linternas.jpg');--veil:rgba(30,12,44,.42);--pos:center 30%">
     <span class="mono-wm" aria-hidden="true">M &amp; M</span>
     <div class="container">
       <div class="eyebrow">El día</div>
       <h2>El <em>itinerario</em> de la noche</h2>
       <span class="itinerary-sub">Viernes, 6 de Noviembre · 2026</span>
 
-      <div class="iz">
-        <div class="braid" aria-hidden="true">
-          <svg class="braid-window" viewBox="0 0 90 70" fill="none">
-            <path d="M8 68 L8 34 Q8 6 45 4 Q82 6 82 34 L82 68 Z" fill="#4a1f5a" stroke="url(#champGradH)" stroke-width="3"/>
-            <path d="M16 68 L16 36 Q16 13 45 12 Q74 13 74 36 L74 68" stroke="#E6CFA4" stroke-width="1" opacity=".7"/>
-            <path d="M45 12 L45 68 M16 40 L74 40" stroke="#E6CFA4" stroke-width="1" opacity=".45"/>
-            <rect x="2" y="64" width="86" height="6" rx="2" fill="url(#champGrad)" stroke="#B8976A" stroke-width=".6"/>
-          </svg>
-          <div class="braid-hair" id="braidHair">
-            <svg class="bf" style="top:9%;left:6%;--r:-20deg;color:#f6c8ff"><use href="#flor"/></svg>
-            <svg class="bf" style="top:21%;right:4%;--r:30deg;color:#fff"><use href="#flor"/></svg>
-            <svg class="bf" style="top:34%;left:2%;--r:10deg;color:#f4a4c0"><use href="#flor"/></svg>
-            <svg class="bf" style="top:47%;right:6%;--r:-35deg;color:#e292fe"><use href="#flor"/></svg>
-            <svg class="bf" style="top:60%;left:5%;--r:25deg;color:#fff"><use href="#flor"/></svg>
-            <svg class="bf" style="top:73%;right:3%;--r:-10deg;color:#f6c8ff"><use href="#flor"/></svg>
-            <svg class="bf" style="top:86%;left:4%;--r:40deg;color:#f4a4c0"><use href="#flor"/></svg>
-          </div>
-          <svg class="braid-tip" viewBox="0 0 80 90" fill="none">
-            <g stroke-linecap="round">
-              <path d="M40 8 Q36 40 20 78" stroke="#c99a4e" stroke-width="3"/><path d="M40 8 Q40 44 33 84" stroke="#e8c27a" stroke-width="3"/>
-              <path d="M40 8 Q44 44 48 84" stroke="#d9ad5f" stroke-width="3"/><path d="M40 8 Q46 40 61 78" stroke="#b98a40" stroke-width="3"/>
-              <path d="M40 8 Q38 42 27 82" stroke="#f3d79a" stroke-width="1.6"/><path d="M40 8 Q43 42 55 82" stroke="#f3d79a" stroke-width="1.6"/>
-            </g>
-            <path d="M40 10 C22 -4 12 16 30 16 Z" fill="#c46fe0" stroke="#8e3fae" stroke-width="1"/>
-            <path d="M40 10 C58 -4 68 16 50 16 Z" fill="#c46fe0" stroke="#8e3fae" stroke-width="1"/>
-            <path d="M36 12 L28 30 M44 12 L52 30" stroke="#b25ad0" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="40" cy="11" r="4.2" fill="#e292fe" stroke="#8e3fae" stroke-width="1"/>
-          </svg>
-        </div>
-
+      <div class="lz">
+        <svg class="lz-path" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M20 0 L20 125 C20 250 80 250 80 375 C80 500 20 500 20 625 C20 750 80 750 80 875 L80 1000"/>
+        </svg>
         <!-- 5:00 PM Iglesia -->
-        <div class="iz-row">
-          <div class="iz-side iz-side--left">
-            <div class="iz-time">5:00 PM</div>
-            <div class="iz-title">Iglesia</div>
-            <div class="iz-desc">Misa de acción de gracias por mis XV años.</div>
+        <div class="lz-row lz-row--l">
+          <div class="lz-lantern" aria-hidden="true">
+            <span class="lz-glow"></span>
+            <span class="lz-float">
+              <svg class="lz-svg" viewBox="0 0 64 86">
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbPaper)"/>
+                <path class="lz-inner" d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbLight)"/>
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbSide)"/>
+                <g stroke="#b9661f" stroke-opacity=".28" stroke-width=".7" fill="none">
+                  <path d="M21 4.6 Q20 40 23 72.6"/><path d="M43 4.6 Q44 40 41 72.6"/>
+                </g>
+                <ellipse cx="32" cy="71" rx="18" ry="3.6" fill="none" stroke="#7a4a1c" stroke-width="1.5"/>
+                <path d="M17 71 L30 79 M47 71 L34 79" stroke="#7a4a1c" stroke-width=".9"/>
+                <ellipse class="lz-flame" cx="32" cy="79" rx="4.2" ry="6" fill="url(#lbFlame)"/>
+              </svg>
+              <span class="lz-sun"></span>
+              <span class="lz-time">5:00<small>PM</small></span>
+            </span>
           </div>
-          <div class="iz-icon" aria-hidden="true">
-            <svg class="iz-petals"><use href="#flor"/></svg>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <div class="lz-card">
+            <span class="lz-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M24 4 L24 14"/>
               <path d="M20 8 L28 8"/>
               <path d="M12 22 L24 14 L36 22"/>
@@ -1246,69 +1302,105 @@ footer.tbg .footer-ornament g{stroke:#E6CFA4}
               <path d="M14 42 L34 42"/>
               <rect x="21" y="28" width="6" height="14"/>
               <path d="M24 30 L24 36"/>
-            </svg>
+            </svg></span>
+            <div class="lz-title">Iglesia</div>
+            <div class="lz-desc">Misa de acción de gracias por mis XV años.</div>
           </div>
-          <div class="iz-side iz-side--right iz-side--empty"></div>
         </div>
-
         <!-- 7:00 PM Recepción -->
-        <div class="iz-row">
-          <div class="iz-side iz-side--left iz-side--empty"></div>
-          <div class="iz-icon" aria-hidden="true">
-            <svg class="iz-petals"><use href="#flor"/></svg>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <div class="lz-row lz-row--r">
+          <div class="lz-lantern" aria-hidden="true">
+            <span class="lz-glow"></span>
+            <span class="lz-float">
+              <svg class="lz-svg" viewBox="0 0 64 86">
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbPaper)"/>
+                <path class="lz-inner" d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbLight)"/>
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbSide)"/>
+                <g stroke="#b9661f" stroke-opacity=".28" stroke-width=".7" fill="none">
+                  <path d="M21 4.6 Q20 40 23 72.6"/><path d="M43 4.6 Q44 40 41 72.6"/>
+                </g>
+                <ellipse cx="32" cy="71" rx="18" ry="3.6" fill="none" stroke="#7a4a1c" stroke-width="1.5"/>
+                <path d="M17 71 L30 79 M47 71 L34 79" stroke="#7a4a1c" stroke-width=".9"/>
+                <ellipse class="lz-flame" cx="32" cy="79" rx="4.2" ry="6" fill="url(#lbFlame)"/>
+              </svg>
+              <span class="lz-sun"></span>
+              <span class="lz-time">7:00<small>PM</small></span>
+            </span>
+          </div>
+          <div class="lz-card">
+            <span class="lz-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M8 16 L12 12 L20 12 L22 9 L26 9 L28 12 L36 12 L40 16 L40 38 L8 38 Z"/>
               <circle cx="24" cy="25" r="7"/>
               <circle cx="24" cy="25" r="3.5" opacity=".55"/>
               <circle cx="34" cy="17" r="1.2" fill="currentColor"/>
-            </svg>
-          </div>
-          <div class="iz-side iz-side--right">
-            <div class="iz-time">7:00 PM</div>
-            <div class="iz-title">Recepción</div>
-            <div class="iz-desc">Te doy la bienvenida a mi celebración.</div>
+            </svg></span>
+            <div class="lz-title">Recepción</div>
+            <div class="lz-desc">Te doy la bienvenida a mi celebración.</div>
           </div>
         </div>
-
         <!-- 8:00 PM Entrada de Quinceañera -->
-        <div class="iz-row">
-          <div class="iz-side iz-side--left">
-            <div class="iz-time">8:00 PM</div>
-            <div class="iz-title">Entrada de Quinceañera</div>
-            <div class="iz-desc">El momento más esperado de la noche.</div>
+        <div class="lz-row lz-row--l">
+          <div class="lz-lantern" aria-hidden="true">
+            <span class="lz-glow"></span>
+            <span class="lz-float">
+              <svg class="lz-svg" viewBox="0 0 64 86">
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbPaper)"/>
+                <path class="lz-inner" d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbLight)"/>
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbSide)"/>
+                <g stroke="#b9661f" stroke-opacity=".28" stroke-width=".7" fill="none">
+                  <path d="M21 4.6 Q20 40 23 72.6"/><path d="M43 4.6 Q44 40 41 72.6"/>
+                </g>
+                <ellipse cx="32" cy="71" rx="18" ry="3.6" fill="none" stroke="#7a4a1c" stroke-width="1.5"/>
+                <path d="M17 71 L30 79 M47 71 L34 79" stroke="#7a4a1c" stroke-width=".9"/>
+                <ellipse class="lz-flame" cx="32" cy="79" rx="4.2" ry="6" fill="url(#lbFlame)"/>
+              </svg>
+              <span class="lz-sun"></span>
+              <span class="lz-time">8:00<small>PM</small></span>
+            </span>
           </div>
-          <div class="iz-icon" aria-hidden="true">
-            <svg class="iz-petals"><use href="#flor"/></svg>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <div class="lz-card">
+            <span class="lz-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M16 30 L16 12 L34 8 L34 26"/>
               <circle cx="13" cy="32" r="4" fill="currentColor" stroke="none"/>
               <circle cx="31" cy="28" r="4" fill="currentColor" stroke="none"/>
               <path d="M16 18 L34 14"/>
-            </svg>
+            </svg></span>
+            <div class="lz-title">Entrada de Quinceañera</div>
+            <div class="lz-desc">El momento más esperado de la noche.</div>
           </div>
-          <div class="iz-side iz-side--right iz-side--empty"></div>
         </div>
-
         <!-- 9:30 PM Cena -->
-        <div class="iz-row">
-          <div class="iz-side iz-side--left iz-side--empty"></div>
-          <div class="iz-icon" aria-hidden="true">
-            <svg class="iz-petals"><use href="#flor"/></svg>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <div class="lz-row lz-row--r">
+          <div class="lz-lantern" aria-hidden="true">
+            <span class="lz-glow"></span>
+            <span class="lz-float">
+              <svg class="lz-svg" viewBox="0 0 64 86">
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbPaper)"/>
+                <path class="lz-inner" d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbLight)"/>
+                <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbSide)"/>
+                <g stroke="#b9661f" stroke-opacity=".28" stroke-width=".7" fill="none">
+                  <path d="M21 4.6 Q20 40 23 72.6"/><path d="M43 4.6 Q44 40 41 72.6"/>
+                </g>
+                <ellipse cx="32" cy="71" rx="18" ry="3.6" fill="none" stroke="#7a4a1c" stroke-width="1.5"/>
+                <path d="M17 71 L30 79 M47 71 L34 79" stroke="#7a4a1c" stroke-width=".9"/>
+                <ellipse class="lz-flame" cx="32" cy="79" rx="4.2" ry="6" fill="url(#lbFlame)"/>
+              </svg>
+              <span class="lz-sun"></span>
+              <span class="lz-time">9:30<small>PM</small></span>
+            </span>
+          </div>
+          <div class="lz-card">
+            <span class="lz-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="24" cy="24" r="14"/>
               <circle cx="24" cy="24" r="9" opacity=".55"/>
               <path d="M14 7 L14 21 M11 7 L11 14 M17 7 L17 14"/>
               <path d="M14 21 L14 41"/>
               <path d="M36 7 C 33 8 31 13 31 18 C 31 20 32 21 34 21 L34 41 L36 41 L36 7 Z"/>
-            </svg>
-          </div>
-          <div class="iz-side iz-side--right">
-            <div class="iz-time">9:30 PM</div>
-            <div class="iz-title">Cena</div>
-            <div class="iz-desc">Disfrutemos juntos de una cena especial.</div>
+            </svg></span>
+            <div class="lz-title">Cena</div>
+            <div class="lz-desc">Disfrutemos juntos de una cena especial.</div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1321,13 +1413,13 @@ footer.tbg .footer-ornament g{stroke:#E6CFA4}
 
       <div class="dc-figures dc-figures--img">
         <div class="dc-fig">
-          <img class="dc-img" src="./caballero.webp" alt="Caballero con traje formal negro" width="300" height="610">
+          <div class="dc-frame"><img class="dc-img" src="./caballero.webp" alt="Caballero con traje formal negro" width="300" height="610"></div>
           <span class="dc-fig-label">Caballeros</span>
           <span class="dc-fig-sub">traje formal</span>
         </div>
         <div class="dc-divider" aria-hidden="true"></div>
         <div class="dc-fig">
-          <img class="dc-img" src="./dama.webp" alt="Dama con vestido formal largo" width="248" height="604">
+          <div class="dc-frame"><img class="dc-img" src="./dama.webp" alt="Dama con vestido formal largo" width="248" height="604"></div>
           <span class="dc-fig-label">Damas</span>
           <span class="dc-fig-sub">vestido formal</span>
         </div>
@@ -1954,40 +2046,27 @@ gsap.fromTo('.cd-block',{opacity:0,scale:.4,rotate:-60},{opacity:1,scale:1,rotat
 
 // ------ ITINERARIO ZIGZAG ------
 (function initItinerary(){
-  var section = document.getElementById('siti');
-  var hair = document.getElementById('braidHair');
-  var braid = section ? section.querySelector('.braid') : null;
-  if(!section || !hair) return;
-  var maxP = 0;
-  if(prefersReduced){ hair.style.setProperty('--grow','0%'); braid.classList.add('is-done'); }
-  else {
-    ScrollTrigger.create({
-      trigger: section.querySelector('.iz'), start:'top 72%', end:'bottom 70%', scrub:1.2,
-      onUpdate:function(self){
-        if(self.progress <= maxP) return;
-        maxP = self.progress;
-        hair.style.setProperty('--grow', ((1 - maxP) * 100).toFixed(2) + '%');
-        if(maxP > .97) braid.classList.add('is-done');
-      }
-    });
-  }
-  gsap.fromTo('.braid-window',{opacity:0,y:-16,scale:.85},{opacity:1,y:0,scale:1,duration:1,ease:'back.out(1.6)',scrollTrigger:{trigger:'#siti .iz',start:'top 80%'}});
-
-  document.querySelectorAll('.iz-row').forEach(function(row){
-    var icon=row.querySelector('.iz-icon');
-    var leftSide=row.querySelector('.iz-side--left:not(.iz-side--empty)');
-    var rightSide=row.querySelector('.iz-side--right:not(.iz-side--empty)');
-    var contentSide=leftSide||rightSide;
-    if(icon){
-      gsap.fromTo(icon,{scale:0,opacity:0,rotate:-90},
-        {scale:1,opacity:1,rotate:0,duration:0.9,ease:'back.out(2)',
-         scrollTrigger:{trigger:row,start:'top 80%',once:true}});
+  var sec = document.getElementById('siti');
+  var lz = sec ? sec.querySelector('.lz') : null;
+  if(!lz) return;
+  var path = lz.querySelector('.lz-path'), maxP = 0;
+  var rows = lz.querySelectorAll('.lz-row');
+  if(prefersReduced){ path.style.setProperty('--grow','0%'); rows.forEach(function(r){ r.classList.add('is-lit'); }); return; }
+  ScrollTrigger.create({
+    trigger: lz, start:'top 70%', end:'bottom 62%', scrub:1,
+    onUpdate:function(self){
+      if(self.progress <= maxP) return;
+      maxP = self.progress;
+      path.style.setProperty('--grow', ((1 - maxP) * 100).toFixed(2) + '%');
     }
-    if(contentSide){
-      gsap.fromTo(contentSide,{opacity:0,x:leftSide?-30:30,y:14},
-        {opacity:1,x:0,y:0,duration:0.85,ease:'power3.out',
-         scrollTrigger:{trigger:row,start:'top 80%',once:true},delay:0.15});
-    }
+  });
+  rows.forEach(function(row){
+    var lan = row.querySelector('.lz-lantern'), card = row.querySelector('.lz-card');
+    var left = row.classList.contains('lz-row--l');
+    gsap.fromTo(lan,{opacity:0,y:70,scale:.7},{opacity:1,y:0,scale:1,duration:1.3,ease:'power3.out',
+      scrollTrigger:{trigger:row,start:'top 80%',once:true},onComplete:function(){ row.classList.add('is-lit'); }});
+    gsap.fromTo(card,{opacity:0,x:left?30:-30},{opacity:1,x:0,duration:1,delay:.3,ease:'power3.out',
+      scrollTrigger:{trigger:row,start:'top 80%',once:true}});
   });
 })();
 
