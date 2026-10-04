@@ -27,8 +27,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 :root{
-  --bg:#ffffff;
-  --surface:#fcf7fd;
+  --base:#fbf5fd;
+  --bg:#fbf5fd;
+  --surface:#fbf5fd;
   --paper:#fde8f0;
   --accent:#e292fe;
   --accent-soft:#f1cdfc;
@@ -750,6 +751,160 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
 #env-flash{position:fixed;inset:0;z-index:9999;background:#fffaf2;opacity:0;pointer-events:none;}
 .wrap{visibility:hidden}
 
+
+/* ============ FONDOS TEMÁTICOS UNIDOS (todas las secciones funden a la misma base) ============ */
+.wrap .tbg{position:relative;isolation:isolate;overflow:visible;background:transparent;contain:none}
+.wrap{background:var(--base)}
+.wrap .tbg::before{content:"";position:absolute;top:calc(-1 * var(--bt,120px));bottom:calc(-1 * var(--bb,120px));left:0;right:0;z-index:-2;pointer-events:none;opacity:1;filter:none;
+  --m:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.1) 30px,rgba(0,0,0,.3) 70px,rgba(0,0,0,.6) 120px,rgba(0,0,0,.85) 170px,#000 240px,#000 calc(100% - 240px),rgba(0,0,0,.85) calc(100% - 170px),rgba(0,0,0,.6) calc(100% - 120px),rgba(0,0,0,.3) calc(100% - 70px),rgba(0,0,0,.1) calc(100% - 30px),transparent 100%);
+  -webkit-mask-image:var(--m);mask-image:var(--m);
+  background:linear-gradient(var(--veil),var(--veil)),var(--img) var(--pos,center)/var(--size,cover) var(--rep,no-repeat);}
+.wrap .tbg::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;filter:none;--ft:0px;--fb:0px;display:none;
+  background:linear-gradient(to bottom,var(--base) 0%,rgba(251,245,253,.95) 12%,rgba(251,245,253,.84) 25%,rgba(251,245,253,.67) 37%,rgba(251,245,253,.48) 50%,rgba(251,245,253,.30) 62%,rgba(251,245,253,.15) 75%,rgba(251,245,253,.05) 88%,rgba(251,245,253,0) 100%) top center/100% var(--ft) no-repeat,
+             linear-gradient(to top,var(--base) 0%,rgba(251,245,253,.95) 12%,rgba(251,245,253,.84) 25%,rgba(251,245,253,.67) 37%,rgba(251,245,253,.48) 50%,rgba(251,245,253,.30) 62%,rgba(251,245,253,.15) 75%,rgba(251,245,253,.05) 88%,rgba(251,245,253,0) 100%) bottom center/100% var(--fb) no-repeat;}
+.wrap .tbg--end::before{--bb:0px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.3) 70px,rgba(0,0,0,.7) 140px,#000 240px);mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.3) 70px,rgba(0,0,0,.7) 140px,#000 240px)}
+.wrap .versiculo.tbg::before{--bt:40px}
+.wrap .tbg > .container{position:relative;z-index:1}
+#siti.tbg{overflow:visible;background:transparent}
+.wrap .tbg > .mono-wm{overflow:hidden;max-width:100%}
+.wrap .tbg > .mono-wm{z-index:0}
+.hero::after{background:linear-gradient(to bottom,transparent 0%,rgba(251,245,253,.6) 60%,var(--base) 100%)}
+/* sección nocturna (contador) */
+.countdown .eyebrow{color:#F7E7CE}
+.countdown .eyebrow::before,.countdown .eyebrow::after{background:#E6CFA4}
+.countdown h2{color:#fff8ec;text-shadow:0 2px 18px rgba(20,6,28,.6)}
+.countdown h2 em{background:linear-gradient(100deg,#D9BF8F 0%,#FFF8EC 30%,#E6CFA4 50%,#FFF8EC 70%,#D9BF8F 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text}
+.countdown-sub{color:#F7E7CE;text-shadow:0 2px 12px rgba(20,6,28,.6)}
+/* footer bajo el estandarte de Corona */
+footer.tbg .footer-names{color:#FFF8EC;text-shadow:0 2px 18px rgba(20,6,28,.6)}
+footer.tbg .footer-date{color:#F7E7CE}
+footer.tbg .footer-credit{color:#f3e6f7;opacity:1}
+footer.tbg .footer-credit a{color:#F7E7CE}
+footer.tbg .footer-ornament g{stroke:#E6CFA4}
+
+/* Sol de Corona (silueta de la película, champán con relieve) */
+.pt-sun img{width:100%;height:100%;display:block}
+.pt-shine,.cd-shine{position:absolute;inset:0;-webkit-mask:url('./sol-mask.png') center/contain no-repeat;mask:url('./sol-mask.png') center/contain no-repeat;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,252,240,.0) 38%,rgba(255,252,240,.85) 47%,rgba(255,252,240,0) 56%,transparent 70%);background-size:300% 100%;animation:solShine 4.5s ease-in-out infinite}
+@keyframes solShine{0%{background-position:120% 0}60%,100%{background-position:-60% 0}}
+.pt-disc{inset:30.5%}
+.pt-mono{font-size:min(8.6vw,35px)}
+.pt-xv{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:6px;white-space:nowrap;font-size:13px;text-shadow:0 1px 10px rgba(20,6,28,.8)}
+
+/* ============ GLOBO DE CANTOYA (botón de música) ============ */
+.lantern-btn{position:fixed;right:16px;bottom:18px;z-index:9000;width:66px;height:92px;padding:0;border:0;background:none;cursor:pointer;
+  opacity:0;transform:translateY(30px) scale(.7);pointer-events:none;transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.2,1);-webkit-tap-highlight-color:transparent}
+.lantern-btn.is-ready{opacity:1;transform:none;pointer-events:auto}
+.lb-glow{position:absolute;left:50%;top:46%;width:150%;height:120%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(255,214,130,.55) 0%,rgba(247,231,206,.28) 38%,rgba(255,190,100,0) 70%);opacity:.45;transition:opacity .6s}
+.lb-float{position:absolute;inset:0;display:block}
+.lb-svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 6px 12px rgba(70,30,82,.35))}
+.lb-inner{opacity:.35;transition:opacity .6s}
+.lb-flame{transform-origin:32px 82px;opacity:.6}
+.lb-sun{position:absolute;left:50%;top:38%;width:46%;aspect-ratio:1;transform:translate(-50%,-50%);
+  -webkit-mask:url('./sol-mask.png') center/contain no-repeat;mask:url('./sol-mask.png') center/contain no-repeat;background:linear-gradient(160deg,#9b4fb3,#6b2f7e);opacity:.88}
+.lb-badge{position:absolute;right:-4px;bottom:4px;width:24px;height:24px;border-radius:50%;background:#5a2f66;border:1.5px solid #F7E7CE;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(30,10,40,.4)}
+.lb-badge svg{width:12px;height:12px;fill:#F7E7CE}
+.lb-ico-pause{display:none}
+.lantern-btn.is-playing .lb-ico-play{display:none}
+.lantern-btn.is-playing .lb-ico-pause{display:block}
+.lantern-btn.is-playing .lb-glow{opacity:1;animation:lbGlow 2.2s ease-in-out infinite}
+.lantern-btn.is-playing .lb-inner{opacity:1}
+.lantern-btn.is-playing .lb-flame{opacity:1;animation:lbFlicker .18s steps(2) infinite alternate}
+.lantern-btn.is-playing .lb-float{animation:lbBob 3.4s ease-in-out infinite}
+@keyframes lbGlow{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+@keyframes lbFlicker{from{transform:scale(1,1)}to{transform:scale(.86,1.12)}}
+@keyframes lbBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}
+
+/* ============ CONTADOR CON SOLES DE CORONA ============ */
+.countdown{padding:min(18vh,170px) 0}
+.countdown-grid{display:grid;grid-template-columns:repeat(2,minmax(0,170px));justify-content:center;gap:10px clamp(10px,4vw,40px)}
+@media(min-width:760px){.countdown-grid{grid-template-columns:repeat(4,190px)}}
+.cd-block{min-width:0;padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;overflow:visible;border-radius:0;text-align:center}
+.cd-block::before{display:none}
+.cd-face{position:relative;width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;perspective:600px}
+.cd-sun{position:absolute;inset:0;background:url('./sol-corona.webp') center/contain no-repeat;filter:drop-shadow(0 0 14px rgba(255,214,140,.55)) drop-shadow(0 6px 10px rgba(20,6,28,.5));animation:ptSpin 48s linear infinite}
+.cd-block:nth-child(even) .cd-sun{animation-direction:reverse}
+.cd-shine{animation-delay:calc(var(--i,0) * .6s)}
+.cd-num{position:relative;z-index:2;background:none;-webkit-text-fill-color:#4a1f5a;color:#4a1f5a;font-family:var(--display);font-style:italic;font-weight:600;
+  font-size:clamp(30px,8.4vw,42px);letter-spacing:-.5px;text-shadow:0 1px 0 rgba(255,250,235,.7)}
+.cd-lbl{margin-top:4px;color:#F7E7CE;font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.45em;opacity:1;text-shadow:0 1px 10px rgba(20,6,28,.7)}
+
+/* ============ ITINERARIO: TRENZA DORADA DE RAPUNZEL ============ */
+#siti .iz{padding:96px 0 110px}
+.braid{position:absolute;left:50%;top:0;bottom:0;width:var(--bw,64px);transform:translateX(-50%);z-index:0;pointer-events:none}
+.braid-window{position:absolute;top:0;left:50%;width:92px;transform:translateX(-50%);z-index:2;filter:drop-shadow(0 6px 12px rgba(70,30,82,.3))}
+.braid-hair{position:absolute;left:0;right:0;top:58px;bottom:70px;
+  background:url('./trenza.png') center top/100% auto repeat-y;
+  clip-path:inset(0 0 var(--grow,100%) 0);-webkit-clip-path:inset(0 0 var(--grow,100%) 0)}
+.braid-hair .bf{position:absolute;width:22px;height:22px;transform:rotate(var(--r,0deg));filter:drop-shadow(0 2px 3px rgba(80,30,90,.35))}
+.braid-tip{position:absolute;bottom:0;left:50%;width:84px;transform:translateX(-50%);opacity:0;transition:opacity .8s}
+.braid.is-done .braid-tip{opacity:1}
+/* tarjetas */
+.iz-side:not(.iz-side--empty){background:rgba(255,253,255,.84);border:1px solid rgba(200,165,110,.5);border-radius:14px;padding:16px 16px 14px;
+  box-shadow:0 10px 26px -14px rgba(70,30,82,.45),inset 0 0 0 4px rgba(255,255,255,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.iz-side--left:not(.iz-side--empty){text-align:right}
+/* nudos con flor: icono al centro, pétalos alrededor */
+.iz-icon{background:none;border:0;box-shadow:none;z-index:3;overflow:visible}
+.iz-icon::before{display:none}
+.iz-icon::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:1;background:radial-gradient(circle at 40% 35%,#fffdf6 0%,#fbeedd 70%,#f0dcbc 100%);border:1.5px solid #D9BF8F;box-shadow:0 4px 14px rgba(90,40,110,.25),inset 0 -3px 6px rgba(160,120,60,.18)}
+.iz-icon svg:not(.iz-petals){width:46%;height:46%;position:relative;z-index:2;color:#5a2f66}
+.iz-icon .iz-petals{position:absolute;left:50%;top:50%;width:178%;height:178%;transform:translate(-50%,-50%);z-index:0;color:#e9b6fb;filter:drop-shadow(0 3px 6px rgba(90,40,110,.3))}
+.iz-row:nth-of-type(even) .iz-icon .iz-petals{color:#f7bcd2}
+@media(max-width:720px){.braid{--bw:46px}.braid-window{width:70px}.braid-hair{top:44px}.iz-side:not(.iz-side--empty){padding:12px 11px 10px}}
+
+/* figuras (de boda-fabiola-y-fernando) */
+.dc-figures--img{align-items:flex-start;gap:10px;max-width:400px}
+.dc-figures--img .dc-fig{gap:12px;padding:0 10px}
+.dc-img{height:clamp(200px,52vw,250px);width:auto;display:block;filter:drop-shadow(0 8px 16px rgba(46,26,40,.25))}
+.dc-fig-label{font-family:var(--serif);font-size:18px;font-style:italic;font-weight:600;letter-spacing:1px;color:var(--accent-deep)}
+.dc-fig-sub{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:-6px}
+
+/* ============ MESA DE REGALOS TEMÁTICA ============ */
+.gift-grid{display:grid;grid-template-columns:1fr;gap:30px;max-width:820px;margin:48px auto 0}
+@media(min-width:780px){.gift-grid{grid-template-columns:1fr 1fr}}
+.gift-card2{position:relative;display:flex;flex-direction:column;align-items:center;padding:30px 18px 26px;border-radius:18px;
+  background:rgba(255,253,255,.82);border:1.5px solid transparent;
+  background:linear-gradient(rgba(255,253,255,.84),rgba(255,253,255,.84)) padding-box,linear-gradient(135deg,#9c7a45,#FFF8EC 30%,#D9BF8F 50%,#FFF8EC 70%,#9c7a45) border-box;
+  box-shadow:0 18px 44px -22px rgba(70,30,82,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.gift-k{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.45em;padding-left:.45em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:18px}
+/* sobre morado con sello de sol */
+.env-body{width:250px;height:196px;overflow:visible}
+.env-seal{position:absolute;left:50%;top:116px;width:46px;height:46px;transform:translate(-50%,-50%);z-index:3;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#8e44ad,#4f1d66);box-shadow:0 3px 8px rgba(30,10,40,.45),inset 0 0 0 2px #D9BF8F;display:flex;align-items:center;justify-content:center;transition:opacity .35s}
+.env-seal img{width:80%;height:80%}
+.env-interactive.open .env-seal{opacity:0}
+.env-lantern{position:absolute;left:50%;top:92px;width:52px;height:68px;transform:translate(-50%,0) scale(.5);opacity:0;z-index:1;
+  border-radius:32% 32% 18% 18%/26% 26% 14% 14%;background:linear-gradient(180deg,#fff3d6 0%,#ffd28a 45%,#f39a3e 100%);
+  box-shadow:0 0 22px 8px rgba(255,205,120,.55),0 0 60px 18px rgba(247,231,206,.4);transition:transform 1.4s cubic-bezier(.2,.8,.2,1) .25s,opacity .5s .25s}
+.env-lantern::after{content:"";position:absolute;left:30%;right:30%;bottom:6%;height:16%;border-radius:50%;background:#fff6c8;filter:blur(2px)}
+.env-lantern-sun{position:absolute;left:50%;top:40%;width:56%;aspect-ratio:1;transform:translate(-50%,-50%);-webkit-mask:url('./sol-mask.png') center/contain no-repeat;mask:url('./sol-mask.png') center/contain no-repeat;background:#7a3a8c;opacity:.85}
+.env-interactive.open .env-lantern{transform:translate(-50%,-132px) scale(1);opacity:1;animation:envLanternFloat 3.2s ease-in-out 1.7s infinite}
+@keyframes envLanternFloat{0%,100%{margin-top:0}50%{margin-top:-8px}}
+.env-interactive{margin-top:40px}
+.env-title{font-size:34px}
+/* sartén que voltea */
+.pan-card{width:260px;height:300px;perspective:900px;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none}
+.pan-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.4,.1,.2,1)}
+.pan-card.flipped .pan-inner{transform:rotateY(180deg)}
+.pan-front,.pan-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.pan-halo{position:absolute;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,rgba(247,231,206,.95) 0%,rgba(241,205,252,.55) 55%,rgba(241,205,252,0) 72%)}
+.pan-img{position:relative;height:280px;width:auto;transform:rotate(-24deg);transform-origin:50% 80%;filter:drop-shadow(0 10px 14px rgba(40,16,50,.4));animation:panIdle 3s ease-in-out infinite}
+@keyframes panIdle{0%,100%{transform:rotate(-24deg)}50%{transform:rotate(-18deg)}}
+.pan-sparks{position:absolute;left:58%;top:30%;width:2px;height:2px}
+.pan-back{transform:rotateY(180deg);border-radius:50%;width:260px;height:260px;top:20px;padding:24px;text-align:center;
+  background:radial-gradient(circle at 40% 30%,#3c3c44 0%,#1d1d22 70%,#111 100%);box-shadow:0 14px 30px rgba(20,8,28,.5),inset 0 0 0 6px #2a2a30,inset 0 0 0 8px rgba(217,191,143,.6)}
+.pan-back-sun{position:absolute;inset:16%;width:68%;height:68%;opacity:.13;pointer-events:none}
+.pan-back .gift-bank-lbl{color:#E6CFA4;position:relative}
+.pan-back .gift-bank-num{color:#FFF8EC;font-size:18px;letter-spacing:.03em;white-space:nowrap;margin-bottom:14px;position:relative}
+.pan-back .gift-bank-lbl{letter-spacing:.28em;font-size:12px;margin-bottom:8px}
+.gift-card2:has(.pan-card.flipped) .pan-hint{opacity:0}
+.pan-hint{transition:opacity .4s}
+.pan-back .gift-copy{border-color:#E6CFA4;color:#FFF8EC;padding:10px 18px;font-size:12px;position:relative}
+.pan-back .gift-copy:hover,.pan-back .gift-copy.is-ok{background:#E6CFA4;color:#2a1a30}
+.pan-back-btn{margin-top:10px;background:none;border:0;color:#E6CFA4;font-family:var(--serif);font-style:italic;font-size:15px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px;position:relative;min-height:36px}
+.pan-hint{margin-top:16px}
+
 @media(max-width:600px){
   body{font-size:16px}
   .loc-map-wrap{height:220px}
@@ -770,6 +925,24 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
       <stop offset="0%" stop-color="#9c7a45"/><stop offset="30%" stop-color="#D9BF8F"/>
       <stop offset="50%" stop-color="#c8a56e"/><stop offset="70%" stop-color="#D9BF8F"/><stop offset="100%" stop-color="#9c7a45"/>
     </linearGradient>
+    <symbol id="flor" viewBox="0 0 40 40">
+      <g fill="currentColor" stroke="rgba(122,58,140,.35)" stroke-width=".5">
+        <ellipse cx="20" cy="9.5" rx="6.2" ry="9"/>
+        <ellipse cx="20" cy="9.5" rx="6.2" ry="9" transform="rotate(72 20 20)"/>
+        <ellipse cx="20" cy="9.5" rx="6.2" ry="9" transform="rotate(144 20 20)"/>
+        <ellipse cx="20" cy="9.5" rx="6.2" ry="9" transform="rotate(216 20 20)"/>
+        <ellipse cx="20" cy="9.5" rx="6.2" ry="9" transform="rotate(288 20 20)"/>
+      </g>
+      <g fill="#fff" opacity=".45">
+        <ellipse cx="18.6" cy="8" rx="2" ry="4.5"/>
+        <ellipse cx="18.6" cy="8" rx="2" ry="4.5" transform="rotate(72 20 20)"/>
+        <ellipse cx="18.6" cy="8" rx="2" ry="4.5" transform="rotate(144 20 20)"/>
+        <ellipse cx="18.6" cy="8" rx="2" ry="4.5" transform="rotate(216 20 20)"/>
+        <ellipse cx="18.6" cy="8" rx="2" ry="4.5" transform="rotate(288 20 20)"/>
+      </g>
+      <circle cx="20" cy="20" r="5.2" fill="url(#champGrad)" stroke="#B8976A" stroke-width=".7"/>
+      <circle cx="18.6" cy="18.6" r="1.6" fill="#fffbe8" opacity=".8"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -779,11 +952,7 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
   <div class="pt-veil" aria-hidden="true"></div>
   <div class="pt-lanterns" id="ptLanterns" aria-hidden="true"></div>
   <div class="pt-medal">
-    <svg class="pt-sun" viewBox="0 0 240 240" aria-hidden="true">
-      <g fill="url(#champGrad)" stroke="#B8976A" stroke-width=".6"><path d="M129.7 58.8 Q129.2 32.5 120.0 6.0 L110.3 58.8 Z"/><path d="M150.5 66.0 Q142.4 44.3 156.7 31.3 L136.6 60.3 Z"/><path d="M170.2 83.6 Q188.4 64.6 200.6 39.4 L156.4 69.8 Z"/><path d="M179.7 103.4 Q189.4 82.3 208.7 83.3 L174.0 89.5 Z"/><path d="M181.2 129.7 Q207.5 129.2 234.0 120.0 L181.2 110.3 Z"/><path d="M174.0 150.5 Q195.7 142.4 208.7 156.7 L179.7 136.6 Z"/><path d="M156.4 170.2 Q175.4 188.4 200.6 200.6 L170.2 156.4 Z"/><path d="M136.6 179.7 Q157.7 189.4 156.7 208.7 L150.5 174.0 Z"/><path d="M110.3 181.2 Q110.8 207.5 120.0 234.0 L129.7 181.2 Z"/><path d="M89.5 174.0 Q97.6 195.7 83.3 208.7 L103.4 179.7 Z"/><path d="M69.8 156.4 Q51.6 175.4 39.4 200.6 L83.6 170.2 Z"/><path d="M60.3 136.6 Q50.6 157.7 31.3 156.7 L66.0 150.5 Z"/><path d="M58.8 110.3 Q32.5 110.8 6.0 120.0 L58.8 129.7 Z"/><path d="M66.0 89.5 Q44.3 97.6 31.3 83.3 L60.3 103.4 Z"/><path d="M83.6 69.8 Q64.6 51.6 39.4 39.4 L69.8 83.6 Z"/><path d="M103.4 60.3 Q82.3 50.6 83.3 31.3 L89.5 66.0 Z"/></g>
-      <circle cx="120" cy="120" r="60" fill="none" stroke="url(#champGrad)" stroke-width="2"/>
-      <g fill="#F7E7CE"><circle cx="176.0" cy="120.0" r="1.3"/><circle cx="174.1" cy="134.5" r="1.3"/><circle cx="168.5" cy="148.0" r="1.3"/><circle cx="159.6" cy="159.6" r="1.3"/><circle cx="148.0" cy="168.5" r="1.3"/><circle cx="134.5" cy="174.1" r="1.3"/><circle cx="120.0" cy="176.0" r="1.3"/><circle cx="105.5" cy="174.1" r="1.3"/><circle cx="92.0" cy="168.5" r="1.3"/><circle cx="80.4" cy="159.6" r="1.3"/><circle cx="71.5" cy="148.0" r="1.3"/><circle cx="65.9" cy="134.5" r="1.3"/><circle cx="64.0" cy="120.0" r="1.3"/><circle cx="65.9" cy="105.5" r="1.3"/><circle cx="71.5" cy="92.0" r="1.3"/><circle cx="80.4" cy="80.4" r="1.3"/><circle cx="92.0" cy="71.5" r="1.3"/><circle cx="105.5" cy="65.9" r="1.3"/><circle cx="120.0" cy="64.0" r="1.3"/><circle cx="134.5" cy="65.9" r="1.3"/><circle cx="148.0" cy="71.5" r="1.3"/><circle cx="159.6" cy="80.4" r="1.3"/><circle cx="168.5" cy="92.0" r="1.3"/><circle cx="174.1" cy="105.5" r="1.3"/></g>
-    </svg>
+    <div class="pt-sun" aria-hidden="true"><img src="./sol-corona.webp" alt="" width="800" height="800" fetchpriority="high"><span class="pt-shine"></span></div>
     <div class="pt-disc" aria-hidden="true"></div>
     <div class="pt-mono">M<span style="font-size:.55em;vertical-align:.25em;padding:0 .04em">&amp;</span>M</div>
     <div class="pt-xv">Mis XV Años</div>
@@ -792,23 +961,43 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
 </div>
 <div id="env-flash" aria-hidden="true"></div>
 <audio id="music" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-blanca-mariannie-marquez-hernandez/cancion.mp3" preload="none" loop></audio>
-<button class="vinyl-btn" id="music-btn" type="button" aria-label="Reproducir música de la invitación">
-  <div class="vinyl-tonearm">
-    <div class="vinyl-tonearm-pivot"></div>
-    <div class="vinyl-tonearm-line"></div>
-    <div class="vinyl-tonearm-head"></div>
-  </div>
-  <div class="vinyl-spin">
-    <div class="vinyl-disc">
-      <div class="vinyl-sheen"></div>
-      <div class="vinyl-label-text">M&amp;M<small>2026</small></div>
-      <div class="vinyl-hole"></div>
-    </div>
-  </div>
-  <div class="vinyl-icons">
-    <svg class="vinyl-icon-play" viewBox="0 0 24 24" fill="#ecc6fb" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-    <svg class="vinyl-icon-pause" viewBox="0 0 24 24" fill="#ecc6fb" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-  </div>
+<button class="lantern-btn" id="music-btn" type="button" aria-label="Reproducir o pausar la música">
+  <span class="lb-glow" aria-hidden="true"></span>
+  <span class="lb-float" aria-hidden="true">
+    <svg class="lb-svg" viewBox="0 0 64 86">
+      <defs>
+        <linearGradient id="lbPaper" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff3d6"/><stop offset=".42" stop-color="#ffd28a"/><stop offset=".78" stop-color="#f8a94e"/><stop offset="1" stop-color="#e98a35"/>
+        </linearGradient>
+        <linearGradient id="lbSide" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#b8611d" stop-opacity=".45"/><stop offset=".22" stop-color="#b8611d" stop-opacity="0"/>
+          <stop offset=".78" stop-color="#b8611d" stop-opacity="0"/><stop offset="1" stop-color="#b8611d" stop-opacity=".5"/>
+        </linearGradient>
+        <radialGradient id="lbLight" cx=".5" cy=".86" r=".62">
+          <stop offset="0" stop-color="#fffbe8"/><stop offset=".35" stop-color="#ffe7a4" stop-opacity=".9"/><stop offset="1" stop-color="#ffb35a" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="lbFlame" cx=".5" cy=".7" r=".5">
+          <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#ffe27a"/><stop offset="1" stop-color="#ff8a2a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbPaper)"/>
+      <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbLight)" class="lb-inner"/>
+      <path d="M9 7 Q32 -1 55 7 L50 70 Q32 76 14 70 Z" fill="url(#lbSide)"/>
+      <g stroke="#b9661f" stroke-opacity=".32" stroke-width=".8" fill="none">
+        <path d="M21 4.6 Q20 40 23 72.6"/><path d="M32 3 L32 74"/><path d="M43 4.6 Q44 40 41 72.6"/>
+        <path d="M11 24 Q32 19 53 24"/><path d="M12.5 46 Q32 42 51.5 46"/>
+      </g>
+      <path d="M9 7 Q32 -1 55 7" stroke="#c8792c" stroke-width="1.2" fill="none" opacity=".6"/>
+      <ellipse cx="32" cy="71" rx="18" ry="3.6" fill="none" stroke="#7a4a1c" stroke-width="1.6"/>
+      <path d="M17 71 L30 79 M47 71 L34 79" stroke="#7a4a1c" stroke-width=".9"/>
+      <ellipse class="lb-flame" cx="32" cy="79" rx="4.2" ry="6" fill="url(#lbFlame)"/>
+    </svg>
+    <span class="lb-sun"></span>
+  </span>
+  <span class="lb-badge" aria-hidden="true">
+    <svg class="lb-ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="lb-ico-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </span>
 </button>
 
 <!-- PARTICLES -->
@@ -859,7 +1048,7 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
   </section>
 
   <!-- FRASE INICIAL -->
-  <section class="section-surface versiculo">
+  <section class="section-surface versiculo tbg" style="--img:url('./bg-verso.jpg');--veil:rgba(251,245,253,.30)">
     <div class="container">
       <div class="verse-wrap">
         <svg class="verse-ornament" viewBox="0 0 360 80" fill="none" aria-hidden="true">
@@ -878,10 +1067,8 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--surface);--to:var(--paper)" aria-hidden="true"></div>
-
   <!-- FECHA HERO -->
-  <section class="date-hero">
+  <section class="date-hero tbg" style="--img:url('./hero-bg.jpeg');--veil:rgba(251,245,253,.52)">
     <div class="container">
       <div class="date-eyebrow" data-anim="date-eb">Reserva esta fecha</div>
       <h2 class="date-h">Mi <em>gran</em> día</h2>
@@ -899,27 +1086,23 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--paper);--to:var(--bg)" aria-hidden="true"></div>
-
   <!-- COUNTDOWN -->
-  <section class="section-bg countdown">
+  <section class="section-bg countdown tbg tbg--dark" style="--img:url('./bg-noche.jpg');--veil:rgba(36,14,48,.38);--pos:center 40%">
     <div class="container">
       <div class="eyebrow">Cuenta regresiva</div>
       <h2>Contamos <em>los</em> días</h2>
       <div class="countdown-sub">hasta el gran momento</div>
       <div class="countdown-grid" id="cd">
-        <div class="cd-block"><div class="cd-num" id="cd-d">000</div><div class="cd-lbl">Días</div></div>
-        <div class="cd-block"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Horas</div></div>
-        <div class="cd-block"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Minutos</div></div>
-        <div class="cd-block"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Segundos</div></div>
+        <div class="cd-block"><div class="cd-face"><span class="cd-sun" aria-hidden="true"></span><span class="cd-shine" aria-hidden="true"></span><div class="cd-num" id="cd-d">000</div></div><div class="cd-lbl">Días</div></div>
+        <div class="cd-block"><div class="cd-face"><span class="cd-sun" aria-hidden="true"></span><span class="cd-shine" aria-hidden="true"></span><div class="cd-num" id="cd-h">00</div></div><div class="cd-lbl">Horas</div></div>
+        <div class="cd-block"><div class="cd-face"><span class="cd-sun" aria-hidden="true"></span><span class="cd-shine" aria-hidden="true"></span><div class="cd-num" id="cd-m">00</div></div><div class="cd-lbl">Minutos</div></div>
+        <div class="cd-block"><div class="cd-face"><span class="cd-sun" aria-hidden="true"></span><span class="cd-shine" aria-hidden="true"></span><div class="cd-num" id="cd-s">00</div></div><div class="cd-lbl">Segundos</div></div>
       </div>
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--bg);--to:var(--surface)" aria-hidden="true"></div>
-
   <!-- FAMILIA -->
-  <section class="section-surface familia">
+  <section class="section-surface familia tbg" style="--img:url('./bg-torre.jpg');--veil:rgba(251,245,253,.50);--pos:center 55%">
     <span class="mono-wm" aria-hidden="true">M &amp; M</span>
     <div class="container">
       <div class="eyebrow">Con todo mi cariño</div>
@@ -937,10 +1120,8 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--surface);--to:var(--surface)" aria-hidden="true"></div>
-
   <!-- UBICACIONES -->
-  <section class="section-surface locs">
+  <section class="section-surface locs tbg" style="--img:url('./bg-castillo-linternas.jpg');--veil:rgba(251,245,253,.50)">
     <div class="container">
       <div style="text-align:center">
         <div class="eyebrow">Acompáñame</div>
@@ -1010,10 +1191,8 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--surface);--to:var(--surface)" aria-hidden="true"></div>
-
   <!-- ITINERARIO -->
-  <section id="siti" style="padding:min(10vh,90px) 0 min(12vh,110px)">
+  <section id="siti" class="tbg" style="padding:min(14vh,120px) 0 min(14vh,130px);--img:url('./bg-soles.jpg');--veil:rgba(251,245,253,.18);--size:620px auto;--rep:repeat">
     <span class="mono-wm" aria-hidden="true">M &amp; M</span>
     <div class="container">
       <div class="eyebrow">El día</div>
@@ -1021,8 +1200,34 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
       <span class="itinerary-sub">Viernes, 6 de Noviembre · 2026</span>
 
       <div class="iz">
-        <div class="iz-line" aria-hidden="true"></div>
-        <div class="iz-glow" id="izGlow" aria-hidden="true"></div>
+        <div class="braid" aria-hidden="true">
+          <svg class="braid-window" viewBox="0 0 90 70" fill="none">
+            <path d="M8 68 L8 34 Q8 6 45 4 Q82 6 82 34 L82 68 Z" fill="#4a1f5a" stroke="url(#champGradH)" stroke-width="3"/>
+            <path d="M16 68 L16 36 Q16 13 45 12 Q74 13 74 36 L74 68" stroke="#E6CFA4" stroke-width="1" opacity=".7"/>
+            <path d="M45 12 L45 68 M16 40 L74 40" stroke="#E6CFA4" stroke-width="1" opacity=".45"/>
+            <rect x="2" y="64" width="86" height="6" rx="2" fill="url(#champGrad)" stroke="#B8976A" stroke-width=".6"/>
+          </svg>
+          <div class="braid-hair" id="braidHair">
+            <svg class="bf" style="top:9%;left:6%;--r:-20deg;color:#f6c8ff"><use href="#flor"/></svg>
+            <svg class="bf" style="top:21%;right:4%;--r:30deg;color:#fff"><use href="#flor"/></svg>
+            <svg class="bf" style="top:34%;left:2%;--r:10deg;color:#f4a4c0"><use href="#flor"/></svg>
+            <svg class="bf" style="top:47%;right:6%;--r:-35deg;color:#e292fe"><use href="#flor"/></svg>
+            <svg class="bf" style="top:60%;left:5%;--r:25deg;color:#fff"><use href="#flor"/></svg>
+            <svg class="bf" style="top:73%;right:3%;--r:-10deg;color:#f6c8ff"><use href="#flor"/></svg>
+            <svg class="bf" style="top:86%;left:4%;--r:40deg;color:#f4a4c0"><use href="#flor"/></svg>
+          </div>
+          <svg class="braid-tip" viewBox="0 0 80 90" fill="none">
+            <g stroke-linecap="round">
+              <path d="M40 8 Q36 40 20 78" stroke="#c99a4e" stroke-width="3"/><path d="M40 8 Q40 44 33 84" stroke="#e8c27a" stroke-width="3"/>
+              <path d="M40 8 Q44 44 48 84" stroke="#d9ad5f" stroke-width="3"/><path d="M40 8 Q46 40 61 78" stroke="#b98a40" stroke-width="3"/>
+              <path d="M40 8 Q38 42 27 82" stroke="#f3d79a" stroke-width="1.6"/><path d="M40 8 Q43 42 55 82" stroke="#f3d79a" stroke-width="1.6"/>
+            </g>
+            <path d="M40 10 C22 -4 12 16 30 16 Z" fill="#c46fe0" stroke="#8e3fae" stroke-width="1"/>
+            <path d="M40 10 C58 -4 68 16 50 16 Z" fill="#c46fe0" stroke="#8e3fae" stroke-width="1"/>
+            <path d="M36 12 L28 30 M44 12 L52 30" stroke="#b25ad0" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="40" cy="11" r="4.2" fill="#e292fe" stroke="#8e3fae" stroke-width="1"/>
+          </svg>
+        </div>
 
         <!-- 5:00 PM Iglesia -->
         <div class="iz-row">
@@ -1032,6 +1237,7 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
             <div class="iz-desc">Misa de acción de gracias por mis XV años.</div>
           </div>
           <div class="iz-icon" aria-hidden="true">
+            <svg class="iz-petals"><use href="#flor"/></svg>
             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M24 4 L24 14"/>
               <path d="M20 8 L28 8"/>
@@ -1049,6 +1255,7 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
         <div class="iz-row">
           <div class="iz-side iz-side--left iz-side--empty"></div>
           <div class="iz-icon" aria-hidden="true">
+            <svg class="iz-petals"><use href="#flor"/></svg>
             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M8 16 L12 12 L20 12 L22 9 L26 9 L28 12 L36 12 L40 16 L40 38 L8 38 Z"/>
               <circle cx="24" cy="25" r="7"/>
@@ -1071,6 +1278,7 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
             <div class="iz-desc">El momento más esperado de la noche.</div>
           </div>
           <div class="iz-icon" aria-hidden="true">
+            <svg class="iz-petals"><use href="#flor"/></svg>
             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M16 30 L16 12 L34 8 L34 26"/>
               <circle cx="13" cy="32" r="4" fill="currentColor" stroke="none"/>
@@ -1085,6 +1293,7 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
         <div class="iz-row">
           <div class="iz-side iz-side--left iz-side--empty"></div>
           <div class="iz-icon" aria-hidden="true">
+            <svg class="iz-petals"><use href="#flor"/></svg>
             <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="24" cy="24" r="14"/>
               <circle cx="24" cy="24" r="9" opacity=".55"/>
@@ -1104,135 +1313,23 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--surface);--to:var(--bg)" aria-hidden="true"></div>
-
   <!-- DRESS CODE -->
-  <section class="section-bg dress">
+  <section class="section-bg dress tbg" style="--img:url('./bg-mural.jpg');--veil:rgba(251,245,253,.62)">
     <div class="container">
       <h2>Código de <em>Vestimenta</em></h2>
       <p class="dress-note">Formal · Color sugerido: negro</p>
 
-      <div class="dc-figures">
+      <div class="dc-figures dc-figures--img">
         <div class="dc-fig">
-          <svg class="dc-svg" id="svg-cab" viewBox="0 0 110 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none">
-            <defs>
-              <linearGradient id="suitFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#7a3a8c" stop-opacity=".05"/>
-                <stop offset="100%" stop-color="#7a3a8c" stop-opacity=".18"/>
-              </linearGradient>
-            </defs>
-            <!-- Aura -->
-            <ellipse cx="55" cy="232" rx="36" ry="3.5" fill="#5a2f66" opacity=".12"/>
-
-            <!-- Cabeza & cuello -->
-            <ellipse id="cab-head" cx="55" cy="28" rx="10.5" ry="12" stroke="#5a2f66" stroke-width="1.1"/>
-            <path id="cab-hair" d="M44.5 26 Q44 12 55 11 Q66 12 65.5 26 Q63 22 60 21.5 Q55 21 50 21.5 Q47 22 44.5 26 Z" fill="#5a2f66" opacity=".88"/>
-            <path id="cab-neck" d="M51 39 L51 47 Q55 49 59 47 L59 39" stroke="#5a2f66" stroke-width="1" stroke-linecap="round"/>
-
-            <!-- Hombros & saco -->
-            <path id="cab-body" d="M30 56 Q40 50 51 48 L55 58 L59 48 Q70 50 80 56 Q83 90 82 130 Q81 165 79 200 L31 200 Q29 165 28 130 Q27 90 30 56 Z" stroke="#5a2f66" stroke-width="1.3" stroke-linejoin="round" fill="url(#suitFill)"/>
-            <!-- Solapas -->
-            <path id="cab-lapel-l" d="M51 48 L42 96 Q44 110 51 116 L55 84 Z" stroke="#7a3a8c" stroke-width="1" fill="#7a3a8c" opacity=".22"/>
-            <path id="cab-lapel-r" d="M59 48 L68 96 Q66 110 59 116 L55 84 Z" stroke="#7a3a8c" stroke-width="1" fill="#7a3a8c" opacity=".22"/>
-            <!-- Camisa V -->
-            <path id="cab-shirt" d="M51 48 L55 64 L59 48" stroke="#5a2f66" stroke-width=".9" fill="#fff" opacity=".5"/>
-            <!-- Corbata -->
-            <path id="cab-tie" d="M54 64 L52.5 78 L55 82 L57.5 78 L56 64 Z" stroke="#c8a56e" stroke-width=".7" fill="#7a3a8c" opacity=".95"/>
-            <path id="cab-tie2" d="M51.5 82 L50 116 L55 124 L60 116 L58.5 82 Z" stroke="#c8a56e" stroke-width=".6" fill="#7a3a8c"/>
-            <!-- Pañuelo -->
-            <path d="M64 78 L66 82 L68 78 L70 82" stroke="#c8a56e" stroke-width=".9" stroke-linecap="round" fill="none"/>
-            <!-- Botones -->
-            <circle cx="55" cy="116" r=".8" fill="#c8a56e"/>
-            <circle cx="55" cy="138" r=".8" fill="#c8a56e"/>
-            <!-- Cinturón sugerido -->
-            <line id="cab-belt" x1="34" y1="160" x2="76" y2="160" stroke="#c8a56e" stroke-width=".6" opacity=".7"/>
-            <!-- Costuras -->
-            <line x1="55" y1="64" x2="55" y2="200" stroke="#5a2f66" stroke-width=".4" opacity=".4"/>
-            <!-- Piernas pantalón -->
-            <path id="cab-legs" d="M34 200 L40 232 L52 232 L55 208 L58 232 L70 232 L76 200" stroke="#5a2f66" stroke-width="1.2" stroke-linejoin="round" fill="#5a2f66" fill-opacity=".18"/>
-            <!-- Zapatos -->
-            <ellipse id="cab-shoe-l" cx="46" cy="234" rx="9" ry="2.3" stroke="#3e2347" stroke-width="1" fill="#3e2347" fill-opacity=".4"/>
-            <ellipse id="cab-shoe-r" cx="64" cy="234" rx="9" ry="2.3" stroke="#3e2347" stroke-width="1" fill="#3e2347" fill-opacity=".4"/>
-            <!-- Gold accents en cuello del saco -->
-            <line x1="48" y1="56" x2="51" y2="48" stroke="#c8a56e" stroke-width=".5" opacity=".6"/>
-            <line x1="62" y1="56" x2="59" y2="48" stroke="#c8a56e" stroke-width=".5" opacity=".6"/>
-          </svg>
-          <div class="dc-fig-name">Caballero</div>
+          <img class="dc-img" src="./caballero.webp" alt="Caballero con traje formal negro" width="300" height="610">
+          <span class="dc-fig-label">Caballeros</span>
+          <span class="dc-fig-sub">traje formal</span>
         </div>
-
         <div class="dc-divider" aria-hidden="true"></div>
-
         <div class="dc-fig">
-          <svg class="dc-svg" id="svg-dam" viewBox="0 0 110 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none">
-            <defs>
-              <linearGradient id="dressFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#e292fe" stop-opacity=".18"/>
-                <stop offset="60%" stop-color="#f1cdfc" stop-opacity=".30"/>
-                <stop offset="100%" stop-color="#fde8f0" stop-opacity=".45"/>
-              </linearGradient>
-              <linearGradient id="bodice" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#e292fe" stop-opacity=".35"/>
-                <stop offset="100%" stop-color="#e292fe" stop-opacity=".18"/>
-              </linearGradient>
-            </defs>
-            <!-- Aura -->
-            <ellipse cx="55" cy="232" rx="48" ry="4.5" fill="#5a2f66" opacity=".10"/>
-
-            <!-- Cabello recogido -->
-            <path id="dam-hair" d="M42 24 Q38 12 55 9 Q72 12 68 24 Q72 36 66 44 Q72 36 70 28 Q68 22 55 21 Q42 22 40 28 Q38 36 44 44 Q38 36 42 24 Z" fill="#5a2f66" opacity=".9"/>
-            <!-- Moño -->
-            <ellipse cx="55" cy="14" rx="5" ry="3.5" fill="#5a2f66" opacity=".9"/>
-            <circle cx="55" cy="14" r="1.2" fill="#c8a56e"/>
-            <!-- Cara -->
-            <ellipse id="dam-head" cx="55" cy="32" rx="9.5" ry="11.5" stroke="#5a2f66" stroke-width="1.1"/>
-            <!-- Pendientes -->
-            <circle cx="46" cy="36" r=".9" fill="#c8a56e"/>
-            <line x1="46" y1="37" x2="46" y2="40" stroke="#c8a56e" stroke-width=".5"/>
-            <circle cx="46" cy="40.5" r=".7" fill="#c8a56e"/>
-            <circle cx="64" cy="36" r=".9" fill="#c8a56e"/>
-            <line x1="64" y1="37" x2="64" y2="40" stroke="#c8a56e" stroke-width=".5"/>
-            <circle cx="64" cy="40.5" r=".7" fill="#c8a56e"/>
-            <!-- Cuello -->
-            <path id="dam-neck" d="M52 43 L52 50 Q55 52 58 50 L58 43" stroke="#5a2f66" stroke-width="1" stroke-linecap="round"/>
-            <!-- Collar gargantilla -->
-            <path d="M48 50 Q55 53 62 50" stroke="#c8a56e" stroke-width=".6" fill="none"/>
-            <circle cx="55" cy="53" r=".9" fill="#c8a56e"/>
-
-            <!-- Hombros y brazos -->
-            <path id="dam-arm-l" d="M44 56 Q34 70 30 96 Q29 110 32 116" stroke="#5a2f66" stroke-width="1.1" stroke-linecap="round"/>
-            <path id="dam-arm-r" d="M66 56 Q76 70 80 96 Q81 110 78 116" stroke="#5a2f66" stroke-width="1.1" stroke-linecap="round"/>
-            <!-- Manos sugeridas -->
-            <ellipse cx="32" cy="118" rx="2.3" ry="3.2" stroke="#5a2f66" stroke-width=".8" fill="none"/>
-            <ellipse cx="78" cy="118" rx="2.3" ry="3.2" stroke="#5a2f66" stroke-width=".8" fill="none"/>
-
-            <!-- Corpiño -->
-            <path id="dam-torso" d="M44 56 Q48 50 55 50 Q62 50 66 56 Q66 76 64 92 L46 92 Q44 76 44 56 Z" stroke="#7a3a8c" stroke-width="1.2" fill="url(#bodice)"/>
-            <!-- Detalles corpiño (escote en V sutil) -->
-            <path d="M50 52 Q55 60 60 52" stroke="#7a3a8c" stroke-width=".7" fill="none"/>
-            <line x1="55" y1="58" x2="55" y2="90" stroke="#7a3a8c" stroke-width=".4" opacity=".5"/>
-            <!-- Cintura cinturón dorado -->
-            <path d="M45 92 L65 92" stroke="#c8a56e" stroke-width="1.2" stroke-linecap="round"/>
-            <circle cx="55" cy="92" r="1.4" fill="#c8a56e"/>
-            <circle cx="55" cy="92" r="2.3" stroke="#c8a56e" stroke-width=".5" fill="none" opacity=".7"/>
-
-            <!-- Falda flowing -->
-            <path id="dam-skirt" d="M46 95 Q30 130 14 200 Q10 218 6 232 L104 232 Q100 218 96 200 Q80 130 64 95 Z" stroke="#7a3a8c" stroke-width="1.2" stroke-linejoin="round" fill="url(#dressFill)"/>
-            <!-- Pliegues -->
-            <path id="dam-fold-l" d="M44 110 Q34 160 18 230" stroke="#7a3a8c" stroke-width=".5" opacity=".55" fill="none"/>
-            <path id="dam-fold-m" d="M55 95 Q55 165 55 230" stroke="#7a3a8c" stroke-width=".4" opacity=".45" fill="none"/>
-            <path id="dam-fold-r" d="M66 110 Q76 160 92 230" stroke="#7a3a8c" stroke-width=".5" opacity=".55" fill="none"/>
-            <!-- Pliegues secundarios -->
-            <path d="M40 130 Q30 180 22 230" stroke="#7a3a8c" stroke-width=".3" opacity=".35" fill="none"/>
-            <path d="M70 130 Q80 180 88 230" stroke="#7a3a8c" stroke-width=".3" opacity=".35" fill="none"/>
-            <!-- Detalles dorados decorativos en la falda -->
-            <circle cx="40" cy="140" r=".9" fill="#c8a56e" opacity=".6"/>
-            <circle cx="70" cy="155" r=".9" fill="#c8a56e" opacity=".6"/>
-            <circle cx="48" cy="180" r=".8" fill="#c8a56e" opacity=".55"/>
-            <circle cx="62" cy="195" r=".9" fill="#c8a56e" opacity=".6"/>
-            <!-- Borde inferior -->
-            <path d="M6 232 Q12 226 18 232 Q24 226 30 232 Q36 226 42 232 Q48 226 55 232 Q62 226 68 232 Q74 226 80 232 Q86 226 92 232 Q98 226 104 232" stroke="#7a3a8c" stroke-width=".7" opacity=".75" fill="none"/>
-          </svg>
-          <div class="dc-fig-name">Dama</div>
+          <img class="dc-img" src="./dama.webp" alt="Dama con vestido formal largo" width="248" height="604">
+          <span class="dc-fig-label">Damas</span>
+          <span class="dc-fig-sub">vestido formal</span>
         </div>
       </div>
 
@@ -1250,75 +1347,78 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--bg);--to:var(--surface)" aria-hidden="true"></div>
-
   <!-- MESA DE REGALOS -->
-  <section class="section-surface">
+  <section class="section-surface gifts tbg" style="--img:url('./bg-linternas-acuarela.jpg');--veil:rgba(251,245,253,.42)">
     <div class="container">
       <div class="gifts-head">
         <div class="eyebrow">Con cariño</div>
         <h2>Mesa de <em>regalos</em></h2>
         <p class="gifts-sub">El mejor regalo es tu compañía en este día tan especial. Si deseas tener un detalle conmigo, puedes hacerlo con una lluvia de sobres o mediante transferencia.</p>
       </div>
-      <div style="margin:52px auto 0;display:flex;flex-direction:column;align-items:center;gap:0;">
-        <!-- Sobre interactivo -->
-        <button class="env-interactive" type="button" aria-label="Sobre — toca para abrir" aria-expanded="false">
-          <div class="env-body">
-            <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="nv-env-fill" x1="0" y1="1" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#fbf1fe"/>
-                  <stop offset="100%" stop-color="#fffafd"/>
-                </linearGradient>
-              </defs>
-              <rect x="18" y="52" width="224" height="132" rx="10" fill="url(#nv-env-fill)" stroke="rgba(241,205,252,.85)" stroke-width="1.4"/>
-              <path d="M18 184 L130 110 L242 184" stroke="rgba(241,205,252,.6)" stroke-width="1" fill="none"/>
-              <line x1="90" y1="30" x2="90" y2="20" stroke="#f1cdfc" stroke-width="1.3" stroke-linecap="round" opacity=".6"/>
-              <line x1="130" y1="24" x2="130" y2="14" stroke="#c8a56e" stroke-width="1.3" stroke-linecap="round" opacity=".75"/>
-              <line x1="170" y1="30" x2="170" y2="20" stroke="#f1cdfc" stroke-width="1.3" stroke-linecap="round" opacity=".6"/>
-              <line x1="110" y1="18" x2="110" y2="10" stroke="#f3dcfb" stroke-width="1" stroke-linecap="round" opacity=".5"/>
-              <line x1="150" y1="18" x2="150" y2="10" stroke="#f3dcfb" stroke-width="1" stroke-linecap="round" opacity=".5"/>
-              <circle cx="130" cy="118" r="16" fill="rgba(200,165,110,.14)" stroke="rgba(200,165,110,.6)" stroke-width="1"/>
-              <text x="130" y="123" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#7a3a8c" opacity=".9">M&amp;M</text>
-            </svg>
-            <div class="env-flap-wrap" aria-hidden="true">
-              <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%">
+      <div class="gift-grid">
+        <!-- LLUVIA DE SOBRES: del sobre sale una linterna -->
+        <div class="gift-card2">
+          <div class="gift-k">Lluvia de sobres</div>
+          <button class="env-interactive" type="button" aria-label="Sobre — toca para abrir" aria-expanded="false">
+            <div class="env-body">
+              <span class="env-lantern" aria-hidden="true"><span class="env-lantern-sun"></span></span>
+              <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
                 <defs>
-                  <linearGradient id="nv-flap-fill" x1="0" y1="1" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#f1cdfc"/>
-                    <stop offset="100%" stop-color="#fbf1fe"/>
+                  <linearGradient id="mm-env-fill" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#5a2470"/><stop offset="100%" stop-color="#8b46a6"/>
                   </linearGradient>
                 </defs>
-                <path d="M0 0 L112 86 L224 0 Z" fill="url(#nv-flap-fill)" stroke="rgba(241,205,252,.85)" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="18" y="52" width="224" height="132" rx="10" fill="url(#mm-env-fill)" stroke="url(#champGradH)" stroke-width="2"/>
+                <path d="M18 184 L130 112 L242 184" stroke="#D9BF8F" stroke-width="1.2" fill="none" opacity=".75"/>
+                <rect x="26" y="60" width="208" height="116" rx="6" fill="none" stroke="#E6CFA4" stroke-width=".7" opacity=".45"/>
               </svg>
+              <div class="env-flap-wrap" aria-hidden="true">
+                <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%">
+                  <defs>
+                    <linearGradient id="mm-flap-fill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#9a55b6"/><stop offset="100%" stop-color="#6e3088"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 0 L112 86 L224 0 Z" fill="url(#mm-flap-fill)" stroke="#D9BF8F" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="env-seal" aria-hidden="true"><img src="./sol-corona.webp" alt=""></span>
+            </div>
+            <div class="env-open-content" aria-live="polite">
+              <p class="env-title">Con todo mi cariño</p>
+              <p class="env-desc">El día de la celebración habrá un buzón especial donde podrás depositar tu sobre.</p>
+            </div>
+          </button>
+          <p class="env-tap-hint">Toca el sobre</p>
+        </div>
+
+        <!-- TRANSFERENCIA: el sartén de Rapunzel -->
+        <div class="gift-card2">
+          <div class="gift-k">Transferencia</div>
+          <div class="pan-card" role="button" tabindex="0" aria-label="Toca el sartén para ver los datos de transferencia" aria-expanded="false">
+            <div class="pan-inner">
+              <div class="pan-front">
+                <div class="pan-halo" aria-hidden="true"></div>
+                <img class="pan-img" src="./sarten.webp" alt="" width="300" height="630">
+                <span class="pan-sparks" aria-hidden="true"></span>
+              </div>
+              <div class="pan-back">
+                <img class="pan-back-sun" src="./sol-corona.webp" alt="" aria-hidden="true">
+                <div class="gift-bank-lbl">Número de cuenta</div>
+                <div class="gift-bank-num">4152 3142 5404 2420</div>
+                <button class="gift-copy" type="button" data-copy="4152314254042420">Copiar número</button>
+                <button class="pan-back-btn" type="button">Volver al sartén</button>
+              </div>
             </div>
           </div>
-          <div class="env-open-content" aria-live="polite">
-            <svg class="env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="8" y="22" width="36" height="24" rx="5"/>
-              <path d="M8 30 Q26 38 44 30"/>
-              <rect x="18" y="8" width="16" height="16" rx="2"/>
-              <path d="M18 8 Q26 3 34 8"/>
-              <rect x="20" y="28" width="12" height="2.5" rx="1.25" fill="currentColor" stroke="none" opacity=".4"/>
-            </svg>
-            <p class="env-title">Lluvia de sobres</p>
-            <p class="env-desc">El día de la celebración habrá un buzón especial<br>donde podrás depositar tu sobre con mucho cariño.</p>
-          </div>
-        </button>
-        <p class="env-tap-hint">Toca el sobre</p>
-        <div class="gift-bank">
-          <div class="gift-bank-lbl">Transferencia</div>
-          <div class="gift-bank-num">4152 3142 5404 2420</div>
-          <button class="gift-copy" type="button" data-copy="4152314254042420">Copiar número</button>
+          <p class="env-tap-hint pan-hint">Toca el sartén</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--surface);--to:var(--paper)" aria-hidden="true"></div>
-
   <!-- ÁLBUM COMPARTIDO -->
-  <section class="section-paper album">
+  <section class="section-paper album tbg" style="--img:url('./bg-sol-acuarela.jpg');--veil:rgba(251,245,253,.30)">
     <div class="container">
       <div class="album-card">
         <div class="eyebrow">Comparte el momento</div>
@@ -1326,18 +1426,15 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
         <p class="album-sub">Captura cada momento especial conmigo. Sube tus fotos al álbum compartido escaneando el código y vive conmigo la celebración.</p>
         <div class="album-qr-frame">
           <div class="album-qr-corners" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-          <!-- PENDIENTE: QR del álbum compartido (el cliente aún no lo envía) -->
-          <div class="album-qr-img album-qr-pending" role="img" aria-label="Código QR próximamente">Código QR<br>próximamente</div>
+          <img class="album-qr-img" src="./qr-album.png" alt="Código QR del álbum compartido" width="420" height="420">
           <div class="album-qr-arc">Captura mi día</div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--paper);--to:var(--bg)" aria-hidden="true"></div>
-
   <!-- RSVP -->
-  <section class="section-bg rsvp" id="rsvp">
+  <section class="section-bg rsvp tbg" id="rsvp" style="--img:url('./bg-barca.jpg');--veil:rgba(251,245,253,.22)">
     <div class="container">
       <div class="rsvp-card">
         <svg class="rsvp-corner rsvp-corner--tl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--gold)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--gold)" opacity=".5"/></svg>
@@ -1407,7 +1504,7 @@ footer{background:linear-gradient(160deg,#f1cdfc 0%,#f4a4c0 35%,#f7e7ce 65%,#fde
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer class="tbg tbg--dark tbg--end" style="--img:url('./bg-estandarte.jpg');--veil:rgba(44,16,56,.30)">
     <div class="container footer-inner">
       <svg class="footer-ornament" viewBox="0 0 260 60" fill="none" aria-hidden="true">
         <g stroke="var(--gold)" stroke-width="1" fill="none" opacity=".85">
@@ -1853,45 +1950,43 @@ function tick(){
   if(ss!==lastVals.s){flipOn(cdEls.s,ss);lastVals.s=ss}
 }
 tick();setInterval(tick,1000);
-gsap.fromTo('.cd-block',{opacity:0,y:40,rotateX:-30},{opacity:1,y:0,rotateX:0,duration:1.1,stagger:.12,ease:'power4.out',scrollTrigger:{trigger:'.countdown-grid',start:'top 82%'}});
+gsap.fromTo('.cd-block',{opacity:0,scale:.4,rotate:-60},{opacity:1,scale:1,rotate:0,duration:1.3,stagger:.14,ease:'back.out(1.5)',scrollTrigger:{trigger:'.countdown-grid',start:'top 85%'}});
 
 // ------ ITINERARIO ZIGZAG ------
 (function initItinerary(){
-  var glow=document.getElementById('izGlow');
-  var section=document.getElementById('siti');
-  var iz=section?section.querySelector('.iz'):null;
-  if(!glow||!section||!iz) return;
+  var section = document.getElementById('siti');
+  var hair = document.getElementById('braidHair');
+  var braid = section ? section.querySelector('.braid') : null;
+  if(!section || !hair) return;
+  var maxP = 0;
+  if(prefersReduced){ hair.style.setProperty('--grow','0%'); braid.classList.add('is-done'); }
+  else {
+    ScrollTrigger.create({
+      trigger: section.querySelector('.iz'), start:'top 72%', end:'bottom 70%', scrub:1.2,
+      onUpdate:function(self){
+        if(self.progress <= maxP) return;
+        maxP = self.progress;
+        hair.style.setProperty('--grow', ((1 - maxP) * 100).toFixed(2) + '%');
+        if(maxP > .97) braid.classList.add('is-done');
+      }
+    });
+  }
+  gsap.fromTo('.braid-window',{opacity:0,y:-16,scale:.85},{opacity:1,y:0,scale:1,duration:1,ease:'back.out(1.6)',scrollTrigger:{trigger:'#siti .iz',start:'top 80%'}});
 
-  ScrollTrigger.create({
-    trigger:section,start:'top 55%',end:'bottom 45%',scrub:1.8,
-    onUpdate:function(self){
-      var h=iz.offsetHeight-90;
-      glow.style.top=(self.progress*h)+'px';
-    }
-  });
-
-  document.querySelectorAll('.iz-row').forEach(function(row,idx){
+  document.querySelectorAll('.iz-row').forEach(function(row){
     var icon=row.querySelector('.iz-icon');
     var leftSide=row.querySelector('.iz-side--left:not(.iz-side--empty)');
     var rightSide=row.querySelector('.iz-side--right:not(.iz-side--empty)');
     var contentSide=leftSide||rightSide;
-
     if(icon){
-      gsap.fromTo(icon,{scale:0,opacity:0,rotate:-45},
-        {scale:1,opacity:1,rotate:0,duration:0.75,ease:'back.out(2)',
-         scrollTrigger:{trigger:row,start:'top 86%',once:true}});
+      gsap.fromTo(icon,{scale:0,opacity:0,rotate:-90},
+        {scale:1,opacity:1,rotate:0,duration:0.9,ease:'back.out(2)',
+         scrollTrigger:{trigger:row,start:'top 80%',once:true}});
     }
-
     if(contentSide){
-      var fromX=leftSide?-30:30;
-      gsap.fromTo(contentSide,{opacity:0,x:fromX,y:14},
+      gsap.fromTo(contentSide,{opacity:0,x:leftSide?-30:30,y:14},
         {opacity:1,x:0,y:0,duration:0.85,ease:'power3.out',
-         scrollTrigger:{trigger:row,start:'top 86%',once:true},delay:0.15});
-
-      var els=[contentSide.querySelector('.iz-time'),contentSide.querySelector('.iz-title'),contentSide.querySelector('.iz-desc')].filter(Boolean);
-      gsap.fromTo(els,{y:10,opacity:0},
-        {y:0,opacity:1,duration:0.7,ease:'power2.out',stagger:0.08,
-         scrollTrigger:{trigger:row,start:'top 86%',once:true},delay:0.28});
+         scrollTrigger:{trigger:row,start:'top 80%',once:true},delay:0.15});
     }
   });
 })();
@@ -1940,6 +2035,7 @@ gsap.fromTo('.dress .eyebrow,.dress h2,.dress-sub,.dress-note',{opacity:0,y:14},
   initFigure(cabParts, '#svg-cab');
   initFigure(damParts, '#svg-dam');
 })();
+gsap.fromTo('.dc-img',{opacity:0,y:30,scale:.94},{opacity:1,y:0,scale:1,duration:1.1,stagger:.18,ease:'power3.out',scrollTrigger:{trigger:'.dc-figures',start:'top 82%'}});
 gsap.fromTo('.dress-avoid',{opacity:0,y:24},{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.dress-avoid',start:'top 88%'}});
 
 // ------ KIDS ------
@@ -1947,7 +2043,33 @@ gsap.fromTo('.kids-card',{opacity:0,y:40,scale:.97},{opacity:1,y:0,scale:1,durat
 
 // ------ GIFTS ------
 gsap.fromTo('.gifts-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.gifts-head',start:'top 80%'}});
-gsap.fromTo('.env-interactive',{opacity:0,y:40,scale:.92},{opacity:1,y:0,scale:1,duration:1.1,ease:'back.out(1.4)',scrollTrigger:{trigger:'.env-interactive',start:'top 85%'}});
+gsap.fromTo('.gift-card2',{opacity:0,y:40,scale:.95},{opacity:1,y:0,scale:1,duration:1.1,stagger:.15,ease:'back.out(1.4)',scrollTrigger:{trigger:'.gift-grid',start:'top 85%'}});
+(function(){
+  var card = document.querySelector('.pan-card');
+  if(!card) return;
+  var img = card.querySelector('.pan-img'), sparksEl = card.querySelector('.pan-sparks'), busy = false;
+  function sparks(){
+    for(var i=0;i<14;i++){
+      var sp=document.createElement('i'); sp.className='poof-spark'; sparksEl.appendChild(sp);
+      var a=Math.PI*2*i/14+Math.random()*.4, d=50+Math.random()*60;
+      gsap.fromTo(sp,{x:0,y:0,scale:1.3,opacity:1},{x:Math.cos(a)*d,y:Math.sin(a)*d,scale:.2,opacity:0,duration:.7+Math.random()*.4,ease:'power3.out',onComplete:(function(n){return function(){n.remove();};})(sp)});
+    }
+  }
+  function open(){
+    if(busy || card.classList.contains('flipped')) return;
+    busy = true;
+    img.style.animation = 'none';
+    gsap.timeline({onComplete:function(){ busy=false; }})
+      .to(img,{rotation:-62,duration:.22,ease:'power2.in'})
+      .to(img,{rotation:18,duration:.16,ease:'power3.out',onStart:sparks})
+      .to(img,{rotation:-24,duration:.4,ease:'elastic.out(1,.5)'})
+      .add(function(){ card.classList.add('flipped'); card.setAttribute('aria-expanded','true'); },'-=.25');
+  }
+  function close(e){ if(e) e.stopPropagation(); card.classList.remove('flipped'); card.setAttribute('aria-expanded','false'); setTimeout(function(){ img.style.animation=''; },900); }
+  card.addEventListener('click', function(e){ if(e.target.closest('.gift-copy,.pan-back-btn')) return; open(); });
+  card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  card.querySelector('.pan-back-btn').addEventListener('click', close);
+})();
 (function(){
   var btn = document.querySelector('.env-interactive');
   if(!btn) return;
@@ -1959,7 +2081,8 @@ gsap.fromTo('.env-interactive',{opacity:0,y:40,scale:.92},{opacity:1,y:0,scale:1
 (function(){
   var b = document.querySelector('.gift-copy');
   if(!b) return;
-  b.addEventListener('click', function(){
+  b.addEventListener('click', function(e){
+    e.stopPropagation();
     var t = b.getAttribute('data-copy');
     function ok(){ b.textContent = '¡Copiado!'; b.classList.add('is-ok'); setTimeout(function(){ b.textContent = 'Copiar número'; b.classList.remove('is-ok'); }, 2200); }
     if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok, function(){ fallback(); }); }
@@ -1967,7 +2090,6 @@ gsap.fromTo('.env-interactive',{opacity:0,y:40,scale:.92},{opacity:1,y:0,scale:1
     function fallback(){ var ta = document.createElement('textarea'); ta.value = t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} ta.remove(); }
   });
 })();
-gsap.fromTo('.gift-bank',{opacity:0,y:24},{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.gift-bank',start:'top 90%'}});
 
 // ------ ALBUM ------
 gsap.fromTo('.album-card',{opacity:0,y:40,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.album-card',start:'top 82%'}});
