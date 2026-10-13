@@ -1940,7 +1940,7 @@ function initRSVP(){
          el panel contaba un lugar de menos. Se pide un nombre por campo. */
       var doble = null;
       for(var d=0; d<inputs.length; d++){
-        if(/[&\/+,]|\sand\s/i.test(inputs[d].value.trim())){ doble = inputs[d]; break; }
+        if(/[&\/+,]|\s(y|and)\s/i.test(inputs[d].value.trim())){ doble = inputs[d]; break; }
       }
       if(doble){
         doble.classList.add('rsvp-input-falta');
